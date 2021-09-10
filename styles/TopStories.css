@@ -1,0 +1,67 @@
+.topStories {
+  height: 100%;
+  width: 80%;
+  margin: auto;
+  margin-top: 0.5rem;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+/* _____________________________________________ ALL STORIES HEADER ____________________________________________ */
+
+.topStories header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.topStories header small {
+  margin-top: 1rem;
+  padding-left: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+/* _____________________________________________ ALL STORIES SUBHEADER ____________________________________________ */
+
+.topStories__subheader {
+  width: 100%;
+  height: 250px;
+  font-size: 1.2rem;
+  font-family: "IBM Plex Sans", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.topStories__subheader > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.topStories__subheader > div > p {
+  margin-bottom: 0.5rem;
+}
+.topStories__subheader > div > button {
+  margin-top: 1rem;
+  border: 2px solid rgb(246, 247, 249);
+  background: none;
+  color: rgb(246, 247, 249);
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.topStories__subheader > div > button > span {
+  margin-left: 0.5rem;
+}
+
+.topStories__subheader > div > button:hover {
+  background: green;
+}
