@@ -1,5 +1,8 @@
 import React from 'react'
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import { useRouter } from "next/router"
+import { PrismaClient } from "@prisma/client"
+
 import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import OfflineBoltIcon from '@material-ui/icons/OfflineBolt';
@@ -11,62 +14,104 @@ import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
 import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 
+const prisma = new PrismaClient()
+const Story = ({ storyById, ratingbyId }) => {
+    console.log("storyPage");
 
-const Story = ({ storyById }) => {
-    console.log("storyPage")
-    const ratingClicked = {
+    let ratingClickedInt = {
         heart: false,
         energy: false,
         ship: false,
         money: false,
     }
+
+
+    const router = useRouter();
     const [story, setStory] = useState(storyById)
-    const [storyRating, setStoryRating] = useState(storyById.ratings)
-    const [storyRatingClicked, setStoryRatingClicked] = useState(ratingClicked)
-    console.log(story)
+    const [storyRating, setStoryRating] = useState({
+        heart: ratingbyId.heart,
+        energy: ratingbyId.energy,
+        ship: ratingbyId.ship,
+        money: ratingbyId.money,
+    })
+
+
     let storyRatingTotal = Object.values(storyRating).reduce((prev, curr) => prev + curr)
-    console.log(storyRatingTotal)
+    const [storyRatingClicked, setStoryRatingClicked] = useState(ratingClickedInt)
+
+    console.log(story)
+
+
+
+    useEffect(() => {
+
+
+    }, [])
+
+    const updateRatings = async (newRating) => {
+        console.log("updateRating")
+        console.log(newRating)
+        const updatedRating = { ...newRating, id: parseInt(router.query.storyId) }
+
+        const response = await fetch("/api/storyratings", {
+            method: "PATCH",
+            body: JSON.stringify(updatedRating)
+        })
+        return await response.json()
+
+    }
+
+
+    const deleteAll = async () => {
+        const response = await fetch("/api/storyratings", {
+            method: "DELETE",
+        })
+        return await response.json()
+    }
 
     const handleClick = (iconType) => {
         console.log("click")
         console.log(iconType)
         switch (iconType) {
             case "heart":
-                if(storyRatingClicked.heart === false){
-                    setStoryRating({...storyRating, heart: storyRating.heart + 1})
+                if (storyRatingClicked.heart === false) {
+                    setStoryRating({ ...storyRating, heart: storyRating.heart + 1 })
                 } else {
-                    setStoryRating({...storyRating, heart: storyRating.heart - 1})
+                    setStoryRating({ ...storyRating, heart: storyRating.heart - 1 })
                 }
                 setStoryRatingClicked({ ...storyRatingClicked, heart: !storyRatingClicked.heart });
                 break;
             case "energy":
-                if(storyRatingClicked.energy === false){
-                    setStoryRating({...storyRating, energy: storyRating.energy + 1})
+                if (storyRatingClicked.energy === false) {
+                    setStoryRating({ ...storyRating, energy: storyRating.energy + 1 })
                 } else {
-                    setStoryRating({...storyRating, energy: storyRating.energy - 1})
+                    setStoryRating({ ...storyRating, energy: storyRating.energy - 1 })
                 }
                 setStoryRatingClicked({ ...storyRatingClicked, energy: !storyRatingClicked.energy });
                 break;
             case "ship":
-                if(storyRatingClicked.ship === false){
-                    setStoryRating({...storyRating, ship: storyRating.ship + 1})
+                if (storyRatingClicked.ship === false) {
+                    setStoryRating({ ...storyRating, ship: storyRating.ship + 1 })
                 } else {
-                    setStoryRating({...storyRating, ship: storyRating.ship - 1})
+                    setStoryRating({ ...storyRating, ship: storyRating.ship - 1 })
                 }
                 setStoryRatingClicked({ ...storyRatingClicked, ship: !storyRatingClicked.ship });
                 break;
             default:
-                if(storyRatingClicked.money === false){
-                    setStoryRating({...storyRating, money: storyRating.money + 1})
+                if (storyRatingClicked.money === false) {
+                    setStoryRating({ ...storyRating, money: storyRating.money + 1 })
                 } else {
-                    setStoryRating({...storyRating, money: storyRating.money - 1})
+                    setStoryRating({ ...storyRating, money: storyRating.money - 1 })
                 }
                 setStoryRatingClicked({ ...storyRatingClicked, money: !storyRatingClicked.money });
                 break;
         }
 
-        console.log("storyRatingClicked", storyRatingClicked)
     }
+
+
+    updateRatings(storyRating)
+    // console.log("storyRating", storyRating)
 
     return (
         <article className="story">
@@ -86,7 +131,7 @@ const Story = ({ storyById }) => {
                 </div>
                 <div className="story__detailsRatings">
                     <img src="https://hackernoon.com/_next/image?url=%2FtldrOpen.png&w=2048&q=75" alt="linkbar" />
-                    <h2>{storyRatingTotal}</h2>
+                    {storyRatingTotal && <h2>{storyRatingTotal}</h2>}
                     <div className="story__detailsRatingIcons">
                         <div className={storyRatingClicked.heart ? "heartActive" : "heart"}>
                             <p>{storyRating.heart}</p>
@@ -116,6 +161,7 @@ const Story = ({ storyById }) => {
             </div>
 
             {/* _____________________________________________ STORY MAIN____________________________________________  */}
+            <button onClick={deleteAll} >delete</button>
 
 
             <div className="story__main">
@@ -192,13 +238,34 @@ const Story = ({ storyById }) => {
 
 export const getServerSideProps = async ({ params }) => {
     const storyId = params.storyId;
+    const createRatingInt = {
+        id: parseInt(storyId),
+        heart: Math.abs(Math.floor(Math.random()*(7-0+1)+0)),
+        energy: Math.abs(Math.floor(Math.random()*(7-0+1)+0)),
+        ship: Math.abs(Math.floor(Math.random()*(7-0+1)+0)),
+        money: Math.abs(Math.floor(Math.random()*(7-0+1)+0)),
+    }
+    let ratingbyId = await prisma.ratings.findUnique({
+        where: {
+            id: parseInt(params.storyId)
+        }
+    })
+
+    if (!ratingbyId) {
+        ratingbyId = createRatingInt;
+        const createdRating = await prisma.ratings.create({
+            data: createRatingInt,
+          })
+    }
+
 
     const response = await fetch(`http://localhost:3000/api/hacker-stories/${storyId}`);
     const storyById = await response.json();
 
     return {
         props: {
-            storyById
+            storyById,
+            ratingbyId
         }
     }
 }

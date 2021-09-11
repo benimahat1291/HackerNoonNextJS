@@ -44,6 +44,12 @@ export const stories = [
     },
     {
         id: 2,
+        ratings: {
+            heart: 10,
+            energy: 2,
+            ship: 0,
+            money: 1,
+        },
         img: "https://hackernoon.com/_next/image?url=https%3A%2F%2Fcdn.hackernoon.com%2Fimages%2FxwRTMTtsfYNZdN4zVqQuYZcuZrs1-wok335ex.jpeg&w=1080&q=75",
         title: "Jailbreaking an iPhone: Everything You Need to Know",
         author: "Jessica Truong",
@@ -77,6 +83,12 @@ export const stories = [
     },
     {
         id: 3,
+        ratings: {
+            heart: 0,
+            energy: 2,
+            ship: 0,
+            money: 1,
+        },
         img: "https://hackernoon.com/_next/image?url=https%3A%2F%2Fcdn.hackernoon.com%2Fimages%2Fy5rdAqC8eIPuI2WU4jkMQJIBJIm2-i9m37zt.jpeg&w=1080&q=75",
         title: "The SANDBOX Will Lead The Decentralized Storytelling Revolution",
         author: "PhilFTW",
@@ -115,6 +127,12 @@ export const stories = [
     },
     {
         id: 4,
+        ratings: {
+            heart: 4,
+            energy: 2,
+            ship: 0,
+            money: 1,
+        },
         title: "Learn the Blockchain Basics - Part 7: What is Inside A Bitcoin Block?",
         img: "https://hackernoon.com/_next/image?url=https%3A%2F%2Fcdn.hackernoon.com%2Fimages%2Fvw5cWXAztCZm8AiOqaVsrBthJFl2-54123agc.png&w=1080&q=75",
         author: "Mickey Maler",
@@ -149,6 +167,12 @@ export const stories = [
     },
     {
         id: 5,
+        ratings: {
+            heart: 1,
+            energy: 2,
+            ship: 0,
+            money: 1,
+        },
         img: "https://hackernoon.com/_next/image?url=https%3A%2F%2Fcdn.hackernoon.com%2Fimages%2FuJdCz5UU86XmC8QthQV4ex8gZE52-x0fl35vk.jpeg&w=1080&q=75",
         title: "Notes on Duolingo's IPO and the Rise of EdTech Unicorns",
         author: "Sarath C P",
@@ -187,6 +211,12 @@ export const stories = [
     },
     {
         id: 6,
+        ratings: {
+            heart: 2,
+            energy: 2,
+            ship: 1,
+            money: 0,
+        },
         img: "https://hackernoon.com/_next/image?url=https%3A%2F%2Fcdn.hackernoon.com%2Fimages%2FugoTV1vwcgR4mN8MMDUUN4vt6p02-9k4h37lj.jpeg&w=1080&q=75",
         title: "Introducing TL;DRs by HackerNoon",
         author: "Limarc Ambalina",

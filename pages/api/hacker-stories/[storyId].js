@@ -1,5 +1,6 @@
 import { stories } from "../../../storyDB";
 
+
 const StoryById = async (req, res) => {
     const httpMethod = req.method;
     const storyId = req.query.storyId 
@@ -14,15 +15,19 @@ const StoryById = async (req, res) => {
             };
             break;
         case "PATCH": 
-          //UPDATE STORY
+            console.log("PATCH")
+            console.log(req.body)
             res.status(200).json({
-
+            ...result, ratings: req.body
+            })
+            res.status(200).jsom({
+                data: "Success"
             })
             break;
             
         default:
             res.setHeader("allow", ['GET', 'PATCH']);
-            res.status(405).end(`Method ${httpMethod} not allowed`)
+            res.status(405).end(`Method ${httpMethod} not allowed`).catch(err => console.log(err))
     }
 }
 

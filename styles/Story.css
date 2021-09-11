@@ -109,6 +109,7 @@
 }
 .heartActive > p {
     color: red !important;
+    opacity: 0.8
 }
 
 .energy:hover button {
@@ -122,6 +123,8 @@
 }
 .energyActive > p {
     color: gold !important;
+    opacity: 0.8
+
 }
 
 .ship:hover button {
@@ -135,6 +138,8 @@
 }
 .shipActive > p {
     color: skyblue !important;
+    opacity: 0.8
+
 }
 
 .money:hover button {
@@ -148,6 +153,7 @@
 }
 .moneyActive > p {
     color: green !important;
+    opacity: 0.8
 }
 
 /* _____________________________________________ STORY MAIN IMG ____________________________________________ */
