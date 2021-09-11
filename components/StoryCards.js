@@ -7,7 +7,7 @@ const StoryCards = ({ stories }) => {
     return (
         <div className="storyCards">
             {stories.map((story) => (
-                <article className="storyCard">
+                <article key={story.id} className="storyCard">
                     <div className="storyCard__header">
                         <Link href={`./story/${story.id}`}><a><h2>{story.title}</h2></a></Link>
                     </div>

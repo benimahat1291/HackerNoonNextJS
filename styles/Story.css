@@ -1,0 +1,242 @@
+.story {
+  /* border: 1px solid; */
+  width: 90%;
+  margin: auto;
+  height: 800px;
+}
+
+/* _____________________________________________ STORY HEADER ____________________________________________ */
+
+.story__header {
+  margin-top: 1rem;
+  text-align: center;
+  letter-spacing: 0px;
+  font-family: "IBM Plex Mono", monospace;
+  line-height: 1.4;
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+/* _____________________________________________ STORY DETAILS ____________________________________________ */
+
+.story__details {
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.story__detailsInfo {
+  display: flex;
+  align-items: center;
+}
+
+.story__detailsInfo > p {
+  margin-right: 1rem;
+}
+
+.story__detailsInfoDate {
+  font-size: 0.8rem;
+  cursor: pointer;
+
+}
+.story__detailsInfoType {
+  font-size: 0.8rem;
+  background: rgb(60, 60, 59);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.3rem 0.5rem 0.3rem 0.1rem;
+  border-radius: 2px;
+  height: 2rem;
+}
+.story__detailsInfoMark {
+    color: gray;
+  cursor: pointer;
+
+}
+.story__detailsInfoMark:hover {
+    color: white;
+}
+
+.story__detailsRatings {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.story__detailsRatings > img {
+  height: 30px;
+  width: auto;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+.story__detailsRatings > h2 {
+  font-size: 1.3rem;
+  margin-right: 0.5rem;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.story__detailsRatingIcons {
+  display: flex;
+  align-items: flex-end;
+  height: 40px;
+}
+
+.story__detailsRatingIcons > button {
+  margin: 2px;
+  padding: 0px;
+  background: transparent;
+  border: none;
+  color: rgb(60, 60, 59);
+  cursor: pointer;
+}
+
+.heart:hover {
+  color: red;
+}
+.energy:hover {
+  color: gold;
+}
+.boat:hover {
+  color: skyblue;
+}
+.money:hover {
+  color: green;
+}
+/* _____________________________________________ STORY MAIN IMG ____________________________________________ */
+
+.story__mainImgContainer {
+  width: 90%;
+  margin: 2rem auto;
+}
+
+.story__mainImgContainer > img {
+  width: 100%;
+  object-fit: cover;
+}
+
+/* _____________________________________________ STORY MAIN ____________________________________________ */
+
+.story__main {
+    display: flex;
+}
+
+.story__mainAuthor {
+    width: 20%;
+    height: 250px;
+    /* border: 1px solid; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.story__mainAuthor > img {
+    border: 2px solid;
+    max-width: 50px;
+    object-fit: cover;
+    box-shadow: rgb(194 202 214) 0px 0.2em, rgb(194 202 214) 0px -0.2em, rgb(194 202 214) 0.2em 0px, rgb(194 202 214) -0.2em 0px;
+}
+
+.story__mainAuthorInfo {
+    font-family: "IBM Plex Mono", monospace;
+
+}
+.story__mainAuthorInfo > h4 {
+    font-size: 1.2rem;
+}
+.story__mainAuthorInfo > p {
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.story__mainAuthor > p {
+    font-style: italic;
+}
+
+.story__mainAuthorSocialIcons > button{
+    color: rgb(0, 187, 0);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+  
+  
+
+.story__mainArticle {
+    /* border: 1px solid gray; */
+    width: 80%;
+    padding: 0 1rem;
+}
+
+.story__mainArticleItem {
+    margin-bottom: 2rem;
+    font-family: "IBM Plex Sans", sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.story__mainArticleItem > p {
+    overflow-wrap: break-word;
+    width: 75%;
+    font-size: 1.2rem;
+}
+
+.dash {
+    background: white;
+    width: 10px;
+    height: 5px;
+}
+
+
+.story__artileIcons {
+    opacity: 0;
+  }
+
+  .story__mainArticleItem:hover .story__artileIcons{
+    opacity: 1;
+}
+
+.story__artileIcons > button {
+    margin: 2px;
+    font-size: 0.8rem;
+    padding: 0px;
+    background: transparent;
+    border: none;
+    color: rgb(60, 60, 59);
+    cursor: pointer;
+  }
+/* _____________________________________________ STORY SUB ARTICLE____________________________________________ */
+
+
+.story__subArticle > h2{
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 1.8rem;
+    width: 80%;
+    margin-bottom: 2rem;
+
+}
+
+
+.story__articleQuote { 
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.5;
+    width: 80%;
+    text-align: center;
+}
+
+.story__articleImg {
+    width: 80%;
+    object-fit: cover;
+    margin-bottom: 2rem;
+
+}
+
+.story__articleImg > img {
+    width: 100%;
+    object-fit: cover;
+}
