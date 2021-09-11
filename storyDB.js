@@ -1,6 +1,12 @@
 export const stories = [
     {
         id: 1,
+        ratings: {
+            heart: 5,
+            energy: 2,
+            ship: 0,
+            money: 1,
+        },
         title: "Is Bitcoin Worth Its Weight in Gold?",
         img: "https://hackernoon.com/_next/image?url=https%3A%2F%2Fcdn.hackernoon.com%2Fimages%2Fr1gGZuNNzjc0wNAM0O1SLicFdny2-4zc2cm2.jpeg&w=1920&q=75",
         author: "Grant Bartel",

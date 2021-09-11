@@ -9,13 +9,64 @@ import EcoIcon from '@material-ui/icons/Eco';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import GitHubIcon from '@material-ui/icons/GitHub';
+import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 
 
 const Story = ({ storyById }) => {
     console.log("storyPage")
-
+    const ratingClicked = {
+        heart: false,
+        energy: false,
+        ship: false,
+        money: false,
+    }
     const [story, setStory] = useState(storyById)
+    const [storyRating, setStoryRating] = useState(storyById.ratings)
+    const [storyRatingClicked, setStoryRatingClicked] = useState(ratingClicked)
     console.log(story)
+    let storyRatingTotal = Object.values(storyRating).reduce((prev, curr) => prev + curr)
+    console.log(storyRatingTotal)
+
+    const handleClick = (iconType) => {
+        console.log("click")
+        console.log(iconType)
+        switch (iconType) {
+            case "heart":
+                if(storyRatingClicked.heart === false){
+                    setStoryRating({...storyRating, heart: storyRating.heart + 1})
+                } else {
+                    setStoryRating({...storyRating, heart: storyRating.heart - 1})
+                }
+                setStoryRatingClicked({ ...storyRatingClicked, heart: !storyRatingClicked.heart });
+                break;
+            case "energy":
+                if(storyRatingClicked.energy === false){
+                    setStoryRating({...storyRating, energy: storyRating.energy + 1})
+                } else {
+                    setStoryRating({...storyRating, energy: storyRating.energy - 1})
+                }
+                setStoryRatingClicked({ ...storyRatingClicked, energy: !storyRatingClicked.energy });
+                break;
+            case "ship":
+                if(storyRatingClicked.ship === false){
+                    setStoryRating({...storyRating, ship: storyRating.ship + 1})
+                } else {
+                    setStoryRating({...storyRating, ship: storyRating.ship - 1})
+                }
+                setStoryRatingClicked({ ...storyRatingClicked, ship: !storyRatingClicked.ship });
+                break;
+            default:
+                if(storyRatingClicked.money === false){
+                    setStoryRating({...storyRating, money: storyRating.money + 1})
+                } else {
+                    setStoryRating({...storyRating, money: storyRating.money - 1})
+                }
+                setStoryRatingClicked({ ...storyRatingClicked, money: !storyRatingClicked.money });
+                break;
+        }
+
+        console.log("storyRatingClicked", storyRatingClicked)
+    }
 
     return (
         <article className="story">
@@ -35,12 +86,25 @@ const Story = ({ storyById }) => {
                 </div>
                 <div className="story__detailsRatings">
                     <img src="https://hackernoon.com/_next/image?url=%2FtldrOpen.png&w=2048&q=75" alt="linkbar" />
-                    <h2>12</h2>
+                    <h2>{storyRatingTotal}</h2>
                     <div className="story__detailsRatingIcons">
-                        <button className="heart"><FavoriteIcon style={{ fontSize: "1.8rem" }} /></button>
-                        <button className="energy"><OfflineBoltIcon style={{ fontSize: "1.8rem" }} /></button>
-                        <button className="boat"><DirectionsBoatIcon style={{ fontSize: "1.8rem" }} /></button>
-                        <button className="money"> <LocalAtmIcon style={{ fontSize: "1.8rem" }} /></button>
+                        <div className={storyRatingClicked.heart ? "heartActive" : "heart"}>
+                            <p>{storyRating.heart}</p>
+                            <button onClick={() => handleClick("heart")}  ><FavoriteIcon style={{ fontSize: "1.8rem" }} /></button>
+                        </div>
+                        <div className={storyRatingClicked.energy ? "energyActive" : "energy"}>
+                            <p className="energyRating">{storyRating.energy}</p>
+                            <button onClick={() => handleClick("energy")} ><OfflineBoltIcon style={{ fontSize: "1.8rem" }} /></button>
+                        </div>
+                        <div className={storyRatingClicked.ship ? "shipActive" : "ship"}>
+                            <p className="shipRating">{storyRating.ship}</p>
+                            <button onClick={() => handleClick("ship")}  ><DirectionsBoatIcon style={{ fontSize: "1.8rem" }} /></button>
+                        </div>
+                        <div className={storyRatingClicked.money ? "moneyActive" : "money"}>
+                            <p className="moneyRating">{storyRating.money}</p>
+                            <button onClick={() => handleClick("money")} > <LocalAtmIcon style={{ fontSize: "1.8rem" }} /></button>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -84,7 +148,7 @@ const Story = ({ storyById }) => {
                         </div>
                     ))}
                     {story.subArticles.map((article) => (
-                        <div className="story__subArticle" key={article.title}>
+                        <div className="story__subArticle" key={article.url}>
                             <h2>{article.title}</h2>
                             {article.articles.map((item) => (
                                 <>
@@ -102,11 +166,11 @@ const Story = ({ storyById }) => {
                                         :
                                         <>
                                             {item[0] === "quote" ?
-                                                <div className="story__articleQuote">
+                                                <div key={item[1]} className="story__articleQuote">
                                                     <p>{item[1]}</p>
                                                 </div>
                                                 :
-                                                <div className="story__articleImg">
+                                                <div key={item[1]} className="story__articleImg">
                                                     <img src={item[1]} alt={item[2]} />
                                                 </div>
 

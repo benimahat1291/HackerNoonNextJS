@@ -39,7 +39,6 @@
 .story__detailsInfoDate {
   font-size: 0.8rem;
   cursor: pointer;
-
 }
 .story__detailsInfoType {
   font-size: 0.8rem;
@@ -52,12 +51,11 @@
   height: 2rem;
 }
 .story__detailsInfoMark {
-    color: gray;
+  color: gray;
   cursor: pointer;
-
 }
 .story__detailsInfoMark:hover {
-    color: white;
+  color: white;
 }
 
 .story__detailsRatings {
@@ -83,28 +81,75 @@
   align-items: flex-end;
   height: 40px;
 }
+.story__detailsRatingIcons > div {
+  text-align: center;
+  font-family: "IBM Plex Mono", monospace;
+}
 
-.story__detailsRatingIcons > button {
+.story__detailsRatingIcons > div > p {
+  color: rgb(60, 60, 59);
+}
+
+.story__detailsRatingIcons > div > button {
   margin: 2px;
   padding: 0px;
   background: transparent;
   border: none;
-  color: rgb(60, 60, 59);
   cursor: pointer;
 }
 
-.heart:hover {
+.heart:hover button {
   color: red;
 }
-.energy:hover {
+.heart:hover p {
+  color: red;
+}
+.heartActive > button {
+    color: red;
+}
+.heartActive > p {
+    color: red !important;
+}
+
+.energy:hover button {
   color: gold;
 }
-.boat:hover {
+.energy:hover p {
+  color: gold;
+}
+.energyActive > button {
+    color: gold;
+}
+.energyActive > p {
+    color: gold !important;
+}
+
+.ship:hover button {
   color: skyblue;
 }
-.money:hover {
+.ship:hover p {
+  color: skyblue;
+}
+.shipActive > button {
+    color: skyblue;
+}
+.shipActive > p {
+    color: skyblue !important;
+}
+
+.money:hover button {
   color: green;
 }
+.money:hover p {
+  color: green;
+}
+.moneyActive > button {
+    color: green;
+}
+.moneyActive > p {
+    color: green !important;
+}
+
 /* _____________________________________________ STORY MAIN IMG ____________________________________________ */
 
 .story__mainImgContainer {
@@ -120,123 +165,115 @@
 /* _____________________________________________ STORY MAIN ____________________________________________ */
 
 .story__main {
-    display: flex;
+  display: flex;
 }
 
 .story__mainAuthor {
-    width: 20%;
-    height: 250px;
-    /* border: 1px solid; */
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  width: 20%;
+  height: 250px;
+  /* border: 1px solid; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .story__mainAuthor > img {
-    border: 2px solid;
-    max-width: 50px;
-    object-fit: cover;
-    box-shadow: rgb(194 202 214) 0px 0.2em, rgb(194 202 214) 0px -0.2em, rgb(194 202 214) 0.2em 0px, rgb(194 202 214) -0.2em 0px;
+  border: 2px solid;
+  max-width: 50px;
+  object-fit: cover;
+  box-shadow: rgb(194 202 214) 0px 0.2em, rgb(194 202 214) 0px -0.2em,
+    rgb(194 202 214) 0.2em 0px, rgb(194 202 214) -0.2em 0px;
 }
 
 .story__mainAuthorInfo {
-    font-family: "IBM Plex Mono", monospace;
-
+  font-family: "IBM Plex Mono", monospace;
 }
 .story__mainAuthorInfo > h4 {
-    font-size: 1.2rem;
+  font-size: 1.2rem;
 }
 .story__mainAuthorInfo > p {
-    font-weight: 500;
-    opacity: 0.8;
+  font-weight: 500;
+  opacity: 0.8;
 }
 
 .story__mainAuthor > p {
-    font-style: italic;
+  font-style: italic;
 }
 
-.story__mainAuthorSocialIcons > button{
-    color: rgb(0, 187, 0);
-    background: transparent;
-    border: none;
-    cursor: pointer;
+.story__mainAuthorSocialIcons > button {
+  color: rgb(0, 187, 0);
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
-
-  
-  
 
 .story__mainArticle {
-    /* border: 1px solid gray; */
-    width: 80%;
-    padding: 0 1rem;
+  /* border: 1px solid gray; */
+  width: 80%;
+  padding: 0 1rem;
 }
 
 .story__mainArticleItem {
-    margin-bottom: 2rem;
-    font-family: "IBM Plex Sans", sans-serif;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  margin-bottom: 2rem;
+  font-family: "IBM Plex Sans", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .story__mainArticleItem > p {
-    overflow-wrap: break-word;
-    width: 75%;
-    font-size: 1.2rem;
+  overflow-wrap: break-word;
+  width: 75%;
+  font-size: 1.2rem;
 }
 
 .dash {
-    background: white;
-    width: 10px;
-    height: 5px;
+  background: white;
+  width: 10px;
+  height: 5px;
 }
 
-
 .story__artileIcons {
-    opacity: 0;
-  }
+  opacity: 0;
+}
 
-  .story__mainArticleItem:hover .story__artileIcons{
-    opacity: 1;
+.story__mainArticleItem:hover .story__artileIcons {
+  opacity: 1;
 }
 
 .story__artileIcons > button {
-    margin: 2px;
-    font-size: 0.8rem;
-    padding: 0px;
-    background: transparent;
-    border: none;
-    color: rgb(60, 60, 59);
-    cursor: pointer;
-  }
+  margin: 2px;
+  font-size: 0.8rem;
+  padding: 0px;
+  background: transparent;
+  border: none;
+  color: rgb(60, 60, 59);
+  cursor: pointer;
+}
 /* _____________________________________________ STORY SUB ARTICLE____________________________________________ */
 
-
-.story__subArticle > h2{
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 1.8rem;
-    width: 80%;
-    margin-bottom: 2rem;
-
+.story__subArticle > h2 {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 1.8rem;
+  width: 80%;
+  margin-bottom: 2rem;
 }
 
-
-.story__articleQuote { 
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
-    opacity: 0.5;
-    width: 80%;
-    text-align: center;
+.story__articleQuote {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  opacity: 0.5;
+  width: 80%;
+  text-align: center;
 }
 
 .story__articleImg {
-    width: 80%;
-    object-fit: cover;
-    margin-bottom: 2rem;
-
+  width: 80%;
+  object-fit: cover;
+  margin-bottom: 2rem;
 }
 
 .story__articleImg > img {
-    width: 100%;
-    object-fit: cover;
+  width: 100%;
+  object-fit: cover;
 }

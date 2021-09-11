@@ -13,17 +13,15 @@ const StoryById = async (req, res) => {
                 res.status(404).json({ message: `Job with Id: ${jobId} not found` })
             };
             break;
-        // case "PUT": 
-        //   //UPDATE JOB
-        //     res.status(200).json({
-        //         title,
-        //         company,
-        //         location,
-        //     })
-        //     break;
+        case "PATCH": 
+          //UPDATE STORY
+            res.status(200).json({
+
+            })
+            break;
             
         default:
-            res.setHeader("allow", ['GET', 'PUT']);
+            res.setHeader("allow", ['GET', 'PATCH']);
             res.status(405).end(`Method ${httpMethod} not allowed`)
     }
 }
