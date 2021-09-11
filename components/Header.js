@@ -2,6 +2,7 @@ import React from 'react'
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import SearchIcon from '@material-ui/icons/Search';
 import Brightness2Icon from '@material-ui/icons/Brightness2';
+import Link from "next/link"
 
 const Header = () => {
     return (
@@ -9,7 +10,9 @@ const Header = () => {
             {/* ------------------------HEADER NAVBAR MAIN --------------------------*/}
             <div className="header__navbar">
                 <div className="header__navbarLeft">
-                    <img src="https://hackernoon.com/hn-logo.png" alt="navbarLogo" />
+                    <Link href="/">
+                    <a><img src="https://hackernoon.com/hn-logo.png" alt="navbarLogo" /></a>
+                    </Link>
                 </div>
 
                 <div className="header__navbarRight">
