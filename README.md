@@ -3,6 +3,7 @@
 
 A clone of the hackernoon story page, built using NEXT.js. Demonstrates Crud functionality using serverless functions to handle reactions to a story. 
 CURRENT NOT DEPLOYED
+link to video demo: https://drive.google.com/file/d/1fM_kHYMHn20pP1n4SZkOdyKHpqAX8kkD/view
 
 link to the hackernoon story page: https://hackernoon.com/tagged/hackernoon-top-story
 
