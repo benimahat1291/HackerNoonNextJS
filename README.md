@@ -1,34 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Table of Contents
 
-## Getting Started
+* [Description](#description)
+* [Links](#links)
+* [Screenshots](#screenshots)
+* [Installation](#installation)
+* [Usage](#usage)
+* [Technologies Used](#technologies)
+* [Collaborators](#collaborators)
+* [Contributing](#contributing)
+* [Questions](#questions)
 
-First, run the development server:
+## Description
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+A clone of the hackernoon story page, built using NEXT.js. Demonstrates Crud functionality using serverless functions to handle reactions to a story. 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+link to real site: https://hackernoon.com/tagged/hackernoon-top-story
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+## Installation Instructions
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+run "npm i" in the root file of the application. 
+run "npm rund dev" to start development server on your localhost
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+## Usage
 
-## Learn More
+This application is intended to demonstrate the functionalty and looks of an e-comerse website designed to look like amazon. This is not made for any comecial use. 
 
-To learn more about Next.js, take a look at the following resources:
+Upon landing on the page you are presented with a simple amazon like homescreen where you can add items to your basket. Before you can checkout out make sure to loggin by signing up for an account. Once you are logged it continue to add more items or go to the checkout page to make to review your order. Once you satisfied you can proceed to checkout where you can use your use your credit card to process the payment. Make sure to not use a real card. Alternatively you can type "424242..." repetivitly for all the card field to test the functionality with this test-card information (as shown in the above screenshot). You can go to your orders page to review your history of purchaces. 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Technologies Used
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Firebase for authentication and cloud fucntion hosting,
+ Express.js, Node.js,
+ React.js Framework
 
-## Deploy on Vercel
+## Collaborators
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This app was built by Beni Mahat.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Contributing
+
+Thank your to Clever Programmers for providing the resources to implement this build. 
+
+We believe code is never finished, welcome your contributions to enhance the applications functionality. Please adhere to the Code of Conduct for the Contributer Covenant, version 2.0, at https://www.contributor-covenant.org/version/2/0/code_of_conduct.html.
+
+## Questions
+
+If you have further projects and questions, you can find me on Github: [GITHUB](https://github.com/benimahat1291). 
+please visit my portfolio to find contact information: [BENI MAHAT](https://benimahat1291.github.io/Portfolio_v2/#/). 

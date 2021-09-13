@@ -21,12 +21,13 @@ export default async (req, res) => {
                 },
                 data: updatedRatingData,
             })
-
-        default:
+        case "GET":
             const allRatings = await prisma.ratings.findMany({})
             res.json(allRatings)
             break;
-
+        default:
+            res.setHeader("allow", ['GET', 'PATCH', "DELETE", "POST"]);
+            res.status(405).end(`Method ${req.method} not allowed`).catch(err => console.log(err))
 
     }
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { useState, useEffect } from "react"
 import { useRouter } from "next/router"
 import { PrismaClient } from "@prisma/client"
-
+import cookieCutter from 'cookie-cutter'
 import TurnedInNotIcon from '@material-ui/icons/TurnedInNot';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import OfflineBoltIcon from '@material-ui/icons/OfflineBolt';
@@ -17,15 +17,6 @@ import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 const prisma = new PrismaClient()
 const Story = ({ storyById, ratingbyId }) => {
     console.log("storyPage");
-
-    let ratingClickedInt = {
-        heart: false,
-        energy: false,
-        ship: false,
-        money: false,
-    }
-
-
     const router = useRouter();
     const [story, setStory] = useState(storyById)
     const [storyRating, setStoryRating] = useState({
@@ -37,7 +28,8 @@ const Story = ({ storyById, ratingbyId }) => {
 
 
     let storyRatingTotal = Object.values(storyRating).reduce((prev, curr) => prev + curr)
-    const [storyRatingClicked, setStoryRatingClicked] = useState(ratingClickedInt)
+    const [storyRatingClicked, setStoryRatingClicked] = useState({})
+
 
     console.log(story)
 
@@ -45,8 +37,28 @@ const Story = ({ storyById, ratingbyId }) => {
 
     useEffect(() => {
 
+        let cookieRatingsClicked = cookieCutter.get(`story${storyById.id}`)
+        if (!cookieRatingsClicked) {
+            console.log("nocookie")
+            let ratingClickedInt = {
+                heart: false,
+                energy: false,
+                ship: false,
+                money: false,
+            }
+            cookieCutter.set(`story${storyById.id}`, JSON.stringify(ratingClickedInt))
+            setStoryRatingClicked(ratingClickedInt)
+        } else {
+            console.log("cookie")
+            cookieRatingsClicked = JSON.parse(cookieRatingsClicked)
+            console.log(cookieRatingsClicked)
+            setStoryRatingClicked(cookieRatingsClicked)
+
+        }
 
     }, [])
+
+
 
     const updateRatings = async (newRating) => {
         console.log("updateRating")
@@ -72,6 +84,7 @@ const Story = ({ storyById, ratingbyId }) => {
     const handleClick = (iconType) => {
         console.log("click")
         console.log(iconType)
+
         switch (iconType) {
             case "heart":
                 if (storyRatingClicked.heart === false) {
@@ -88,6 +101,9 @@ const Story = ({ storyById, ratingbyId }) => {
                     setStoryRating({ ...storyRating, energy: storyRating.energy - 1 })
                 }
                 setStoryRatingClicked({ ...storyRatingClicked, energy: !storyRatingClicked.energy });
+
+
+
                 break;
             case "ship":
                 if (storyRatingClicked.ship === false) {
@@ -95,7 +111,11 @@ const Story = ({ storyById, ratingbyId }) => {
                 } else {
                     setStoryRating({ ...storyRating, ship: storyRating.ship - 1 })
                 }
+
                 setStoryRatingClicked({ ...storyRatingClicked, ship: !storyRatingClicked.ship });
+
+
+
                 break;
             default:
                 if (storyRatingClicked.money === false) {
@@ -107,10 +127,18 @@ const Story = ({ storyById, ratingbyId }) => {
                 break;
         }
 
+        
+
+
+
+
     }
 
 
+    if(Object.keys(storyRatingClicked).length > 0) cookieCutter.set(`story${storyById.id}`, JSON.stringify(storyRatingClicked))
+
     updateRatings(storyRating)
+
     // console.log("storyRating", storyRating)
 
     return (
@@ -132,25 +160,25 @@ const Story = ({ storyById, ratingbyId }) => {
                 <div className="story__detailsRatings">
                     <img src="https://hackernoon.com/_next/image?url=%2FtldrOpen.png&w=2048&q=75" alt="linkbar" />
                     {storyRatingTotal && <h2>{storyRatingTotal}</h2>}
-                    <div className="story__detailsRatingIcons">
+                    {storyRatingClicked && <div className="story__detailsRatingIcons">
                         <div className={storyRatingClicked.heart ? "heartActive" : "heart"}>
                             <p>{storyRating.heart}</p>
-                            <button onClick={() => handleClick("heart")}  ><FavoriteIcon style={{ fontSize: "1.8rem" }} /></button>
+                            <button onClick={() => {handleClick("heart")}}  ><FavoriteIcon style={{ fontSize: "1.8rem" }} /></button>
                         </div>
                         <div className={storyRatingClicked.energy ? "energyActive" : "energy"}>
                             <p className="energyRating">{storyRating.energy}</p>
-                            <button onClick={() => handleClick("energy")} ><OfflineBoltIcon style={{ fontSize: "1.8rem" }} /></button>
+                            <button onClick={() =>{ handleClick("energy")}} ><OfflineBoltIcon style={{ fontSize: "1.8rem" }} /></button>
                         </div>
                         <div className={storyRatingClicked.ship ? "shipActive" : "ship"}>
                             <p className="shipRating">{storyRating.ship}</p>
-                            <button onClick={() => handleClick("ship")}  ><DirectionsBoatIcon style={{ fontSize: "1.8rem" }} /></button>
+                            <button onClick={() => {handleClick("ship")}}  ><DirectionsBoatIcon style={{ fontSize: "1.8rem" }} /></button>
                         </div>
                         <div className={storyRatingClicked.money ? "moneyActive" : "money"}>
                             <p className="moneyRating">{storyRating.money}</p>
-                            <button onClick={() => handleClick("money")} > <LocalAtmIcon style={{ fontSize: "1.8rem" }} /></button>
+                            <button onClick={() => {handleClick("money")}} > <LocalAtmIcon style={{ fontSize: "1.8rem" }} /></button>
                         </div>
 
-                    </div>
+                    </div>}
                 </div>
             </div>
             {/* _____________________________________________ STORY MAIN IMG ____________________________________________  */}
@@ -199,7 +227,7 @@ const Story = ({ storyById, ratingbyId }) => {
                             {article.articles.map((item) => (
                                 <>
                                     {item.length === 1 ?
-                                        <div className="story__mainArticleItem" key={item}>
+                                        <div className="story__mainArticleItem" key={item[0]}>
                                             <p>{item}</p>
                                             <div className="dash"></div>
                                             <div className="story__artileIcons">
@@ -240,10 +268,10 @@ export const getServerSideProps = async ({ params }) => {
     const storyId = params.storyId;
     const createRatingInt = {
         id: parseInt(storyId),
-        heart: Math.abs(Math.floor(Math.random()*(7-0+1)+0)),
-        energy: Math.abs(Math.floor(Math.random()*(7-0+1)+0)),
-        ship: Math.abs(Math.floor(Math.random()*(7-0+1)+0)),
-        money: Math.abs(Math.floor(Math.random()*(7-0+1)+0)),
+        heart: Math.abs(Math.floor(Math.random() * (7 - 0 + 1) + 0)),
+        energy: Math.abs(Math.floor(Math.random() * (7 - 0 + 1) + 0)),
+        ship: Math.abs(Math.floor(Math.random() * (7 - 0 + 1) + 0)),
+        money: Math.abs(Math.floor(Math.random() * (7 - 0 + 1) + 0)),
     }
     let ratingbyId = await prisma.ratings.findUnique({
         where: {
@@ -255,8 +283,9 @@ export const getServerSideProps = async ({ params }) => {
         ratingbyId = createRatingInt;
         const createdRating = await prisma.ratings.create({
             data: createRatingInt,
-          })
+        })
     }
+
 
 
     const response = await fetch(`http://localhost:3000/api/hacker-stories/${storyId}`);
@@ -265,9 +294,10 @@ export const getServerSideProps = async ({ params }) => {
     return {
         props: {
             storyById,
-            ratingbyId
+            ratingbyId,
         }
     }
 }
+
 
 export default Story;
