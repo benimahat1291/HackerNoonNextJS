@@ -26,7 +26,7 @@ export default function Home({ allStories }) {
             <main>
                 <header className="topStories__header">
                     <h2>#hackernoon-top-story stories</h2>
-                    <small>(4,911 results)</small>
+                    <small>({allStories.length} Results)</small>
                 </header>
                 <div className="topStories__subheader">
                     <p>Want the Top Headlines on Hacker Noon Delivered to Your Inbox, Weekly?</p>

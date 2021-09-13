@@ -2,8 +2,9 @@
 ## Description
 
 A clone of the hackernoon story page, built using NEXT.js. Demonstrates Crud functionality using serverless functions to handle reactions to a story. 
+CURRENT NOT DEPLOYED
 
-link to real site: https://hackernoon.com/tagged/hackernoon-top-story
+link to the hackernoon story page: https://hackernoon.com/tagged/hackernoon-top-story
 
 ## Installation Instructions
 
@@ -11,8 +12,6 @@ run "npm i" in the root file of the application.
 run "npm run dev" to start development server on your localhost
 
 ## Technologies Used
-
-Firebase for authentication and cloud fucntion hosting,
  NEXT.JS, Prisma, sqlite
 
 ## Questions
